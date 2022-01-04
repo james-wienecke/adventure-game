@@ -30,6 +30,11 @@ public class Game {
                 case "check exits":
                     System.out.printf("%s\n", currentRoom.describeConnectingRooms());
                     break;
+                case "quit":
+                    System.out.println("Bye bye!");
+                    break;
+                default:
+                    System.out.println("I don't know how to do that.");
             }
         }
     }
