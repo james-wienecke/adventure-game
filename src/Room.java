@@ -4,7 +4,7 @@ public class Room {
     public Room() {
         this.description = "a small room";
         this.items = new LinkedList<Item>();
-        this.addItem(new Item("painting of a young man with a sword wearing traditional Chinese robes", "painting"));
+        this.addItems(itemTestList());
     }
 
     private String description;
@@ -17,5 +17,17 @@ public class Room {
         this.items.add(item);
     }
 
+    public void addItems(LinkedList<Item> items) {
+        this.items.addAll(items);
+    }
+
     public LinkedList<Item> items;
+
+    private LinkedList<Item> itemTestList() {
+        LinkedList<Item> testItems = new LinkedList<Item>();
+        testItems.add(new Item("painting of a young man with a sword wearing traditional Chinese robes", "painting"));
+        testItems.add(new Item("silver-white Chinese stringed instrument", "guqin"));
+        testItems.add(new Item("dog food bag"));
+        return testItems;
+    }
 }

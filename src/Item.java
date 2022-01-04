@@ -4,6 +4,11 @@ public class Item {
         this.shortDescription = shortDesc;
     }
 
+    public Item(String shortDesc) {
+        this.description = shortDesc;
+        this.shortDescription = shortDesc;
+    }
+
     private String description;
     private String shortDescription;
     // private boolean visible = true;
