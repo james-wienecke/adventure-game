@@ -56,6 +56,18 @@ public class Game {
                             System.out.println("Invalid direction.");
                         }
                         break;
+                    case "help":
+                        System.out.println("Game help:");
+                        System.out.println("[COMMANDS]");
+                        System.out.println("\"help\": this command");
+                        System.out.println("\"quit\": quit game");
+                        System.out.println("\"go\": enter change location mode");
+                        System.out.println("\"check exits\": list all visible connections to other rooms");
+                        System.out.println("\"look around\": get a detailed description of the current room");
+                        System.out.println("\"search\": list all visible items in the room");
+                        System.out.println("\"look at\": enter item inspection mode");
+                        System.out.println("----------------------------------------------------------------");
+                        break;
                     case "quit":
                         System.out.println("Bye bye!");
                         break;
