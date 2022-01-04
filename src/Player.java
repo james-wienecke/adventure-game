@@ -35,4 +35,12 @@ public class Player {
     public Room getLocation() {
         return this.location;
     }
+
+    public String listFormatInventory() {
+        StringBuilder output = new StringBuilder();
+        for (Item item : this.inventory) {
+            output.append(String.format("You have a %s\n", item.getShortDescription()));
+        }
+        return output.toString();
+    }
 }

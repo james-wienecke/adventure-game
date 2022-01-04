@@ -25,7 +25,10 @@ public class Game {
                         System.out.printf("%s\n", player.getLocation().describeLocation());
                         break;
                     case "search":
-                        System.out.print(player.getLocation().getVisibleItems());
+                        if (player.getLocation().getVisibleItems().isEmpty())
+                            System.out.println("You don't see anything useful.");
+                        else
+                            System.out.print(player.getLocation().getVisibleItems());
                         break;
                     case "take":
                         System.out.println("Take what item?");
@@ -50,6 +53,9 @@ public class Game {
                         if (itemQueryReply.isEmpty())
                             itemQueryReply = "I don't know what that is!";
                         System.out.println(itemQueryReply);
+                        break;
+                    case "inventory":
+                        System.out.print(player.listFormatInventory());
                         break;
                     case "check exits":
                         System.out.printf("%s\n", player.getLocation().describeConnectingRooms());
