@@ -18,6 +18,8 @@ public class Room {
         return String.format("You are in %s.", description);
     }
 
+    private String descriptionEntrance = "a dimly lit room";
+
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -44,6 +46,23 @@ public class Room {
 
     public void addConnectingRoom(String direction, Room room) {
         connections.put(direction, room);
+    }
+
+    public Room getConnectingRoom(String direction) {
+        return connections.get("direction");
+    }
+
+    public String describeConnectingRooms() {
+        StringBuilder output = new StringBuilder();
+        connections.forEach((direction, room) -> {
+            output.append(String.format("\nTo the %s, there is %s.", direction, room.getDescriptionEntrance()));
+        });
+
+        return output.toString();
+    }
+
+    public String getDescriptionEntrance() {
+        return descriptionEntrance;
     }
 
     private LinkedList<Item> itemTestList() {

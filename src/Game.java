@@ -27,6 +27,9 @@ public class Game {
                 case "search for items":
                     System.out.print(currentRoom.getVisibleItems());
                     break;
+                case "check exits":
+                    System.out.printf("%s\n", currentRoom.describeConnectingRooms());
+                    break;
             }
         }
     }
