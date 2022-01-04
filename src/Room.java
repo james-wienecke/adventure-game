@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Room {
     public Room() {
+        // set the room description you fool/coward
         this("a blank room");
     }
 
@@ -55,7 +56,7 @@ public class Room {
         connections.put(direction, room);
     }
 
-    public boolean isValidConnectionDirection(String direction) {
+    public boolean isValidConnection(String direction) {
         return connections.containsKey(direction);
     }
 
@@ -63,29 +64,25 @@ public class Room {
         return connections.get(direction);
     }
 
-
     public String describeConnectingRooms() {
         StringBuilder output = new StringBuilder();
         Iterator<Map.Entry<String, Room>> i = this.connections.entrySet().iterator();
 
         while (i.hasNext()) {
             Map.Entry connection = i.next();
-            output.append(String.format("To the %s, there is %s.", connection.getKey(), ((Room) connection.getValue()).getDescriptionEntrance()));
-            if (i.hasNext()) output.append("\n");
+            output.append(String.format("To the %s, there is %s.",
+                    connection.getKey(),
+                    ((Room) connection.getValue()).getDescriptionEntrance()));
+            if (i.hasNext()) output.append('\n'); // skip newlines if this is the last room
         }
-
         return output.toString();
     }
 
     public String getDescriptionEntrance() {
-        return descriptionEntrance;
+        return this.descriptionEntrance;
     }
 
-    private LinkedList<Item> itemTestList() {
-        LinkedList<Item> testItems = new LinkedList<Item>();
-        testItems.add(new Item("painting of a young man with a sword wearing traditional Chinese robes", "painting"));
-        testItems.add(new Item("silver-white Chinese stringed instrument", "guqin"));
-        testItems.add(new Item("dog food bag"));
-        return testItems;
+    public void changeRoomDescription(String newDescription) {
+        this.description = newDescription;
     }
 }

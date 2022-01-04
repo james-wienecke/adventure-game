@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class Game {
     public Game() {
-//        currentRoom = new Room();
         currentRoom = Scenario.demo();
-
     }
 
     public Room currentRoom;
 
+    // gonna do my best to only use the scanner in one class
     protected Scanner sc = new Scanner(System.in);
 
     public void start() {
@@ -34,7 +33,7 @@ public class Game {
                         System.out.println("Go where?");
                         System.out.print("> ");
                         String direction = sc.nextLine();
-                        if (currentRoom.isValidConnectionDirection(direction)) {
+                        if (currentRoom.isValidConnection(direction)) {
                             currentRoom = currentRoom.getConnectingRoom(direction);
                             System.out.println(currentRoom.describeLocation());
                         } else {
