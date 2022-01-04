@@ -1,7 +1,7 @@
 public class Utility {
 
     public static String oppositeDirection(String direction) {
-        String opposite;
+        String opposite ="";
         switch (direction) {
             case "north":
                 opposite = "south";
