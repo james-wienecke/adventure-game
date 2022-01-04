@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class Game {
     public Game() {
-        currentRoom = new Room();
+//        currentRoom = new Room();
+        currentRoom = Scenario.demo();
+
     }
 
     public Room currentRoom;

@@ -11,5 +11,7 @@ public class Scenario {
         Room kitchenRoom = new Room("a grimy little kitchen, infested with insects");
         kitchenRoom.addItem(new Item("plastic box of delicious fruit-flavored tide detergent pods", "container of tide pods"));
         livingRoom.addConnectingRoom("north", kitchenRoom);
+
+        return startRoom;
     }
 }
