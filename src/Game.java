@@ -27,6 +27,17 @@ public class Game {
                     case "search":
                         System.out.print(player.getLocation().getVisibleItems());
                         break;
+                    case "take":
+                        System.out.println("Take what item?");
+                        System.out.print("> ");
+                        String takeQuery = sc.nextLine();
+                        if (player.getLocation().hasItem(takeQuery)) {
+                            player.collectItem(takeQuery);
+                            System.out.printf("Took %s\n", takeQuery);
+                        } else {
+                            System.out.println("I can't find that item!");
+                        }
+                        break;
                     case "look at":
                         System.out.println("Look at what item?");
                         System.out.print("> ");
@@ -63,6 +74,7 @@ public class Game {
                         System.out.println("\"check exits\": list all visible connections to other rooms");
                         System.out.println("\"look around\": get a detailed description of the current room");
                         System.out.println("\"search\": list all visible items in the room");
+                        System.out.println("\"take\": grab an item from the room and put it in your inventory");
                         System.out.println("\"look at\": enter item inspection mode");
                         System.out.println("----------------------------------------------------------------");
                         break;
