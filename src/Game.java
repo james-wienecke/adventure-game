@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class Game {
     public Game() {
-//        this.currentRoom = Scenario.demo();
         this.player = new Player();
-        player.location = Scenario.demo();
+        player.setLocation(Scenario.demo());
     }
 
-//    public Room currentRoom;
     public Player player;
 
     // gonna do my best to only use the scanner in one class
@@ -16,7 +14,7 @@ public class Game {
     public void start() {
         System.out.println("Welcome to video game!");
 
-        System.out.println(player.location.describeLocation());
+        System.out.println(player.getLocation().describeLocation());
 
         String input = "";
         while (input.compareToIgnoreCase("quit") != 0) {
@@ -24,17 +22,17 @@ public class Game {
                 input = this.sc.nextLine();
                 switch (input) {
                     case "look around":
-                        System.out.printf("%s\n", player.location.describeLocation());
+                        System.out.printf("%s\n", player.getLocation().describeLocation());
                         break;
                     case "search":
-                        System.out.print(player.location.getVisibleItems());
+                        System.out.print(player.getLocation().getVisibleItems());
                         break;
                     case "look at":
                         System.out.println("Look at what item?");
                         System.out.print("> ");
                         String itemQuery = sc.nextLine();
                         String itemQueryReply = "";
-                        for (Item item : player.location.items) {
+                        for (Item item : player.getLocation().items) {
                             if (itemQuery.equalsIgnoreCase(item.getShortDescription()))
                                 itemQueryReply = item.formatFullDescription();
                         }
@@ -43,15 +41,15 @@ public class Game {
                         System.out.println(itemQueryReply);
                         break;
                     case "check exits":
-                        System.out.printf("%s\n", player.location.describeConnectingRooms());
+                        System.out.printf("%s\n", player.getLocation().describeConnectingRooms());
                         break;
                     case "go":
                         System.out.println("Go where?");
                         System.out.print("> ");
                         String direction = sc.nextLine();
-                        if (player.location.isValidConnection(direction)) {
-                            player.location = player.location.getConnectingRoom(direction);
-                            System.out.println(player.location.describeLocation());
+                        if (player.getLocation().isValidConnection(direction)) {
+                            player.setLocation(direction);
+                            System.out.println(player.getLocation().describeLocation());
                         } else {
                             System.out.println("Invalid direction.");
                         }
@@ -75,5 +73,13 @@ public class Game {
                         System.out.println("I don't know how to do that.");
                 }
         }
+    }
+
+    private void win() {
+        System.out.println("Congrats! YOU WIN!!!");
+    }
+
+    private void lose() {
+        System.out.println("Congrats! You are a loser! But I still love you ♡");
     }
 }

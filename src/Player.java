@@ -7,7 +7,7 @@ public class Player {
     }
 
     public String name;
-    public Room location;
+    private Room location;
     private LinkedList<Item> inventory;
 
     public void addItemToInventory(Item item) {
@@ -16,5 +16,13 @@ public class Player {
 
     public void setLocation(Room room) {
         this.location = room;
+    }
+
+    public void setLocation(String direction) {
+        this.location = this.location.getConnectingRoom(direction);
+    }
+
+    public Room getLocation() {
+        return this.location;
     }
 }
