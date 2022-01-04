@@ -6,5 +6,14 @@ public class Item {
 
     private String description;
     private String shortDescription;
-    private boolean visible = true;
+    // private boolean visible = true;
+
+    public String formatFullDescription() {
+        return String.format("This is a %s.", description);
+    }
+
+    public String formatBriefDescription() {
+        return String.format("This is %s.", shortDescription);
+    }
+
 }
