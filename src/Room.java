@@ -66,6 +66,14 @@ public class Room {
         return index;
     }
 
+    public Item getItemFromLocation(int index) {
+        return this.items.get(index);
+    }
+
+    public Item getItemFromLocation(String itemQuery) {
+        return getItemFromLocation(getItemIndex(itemQuery));
+    }
+
     public void removeItem(String itemQuery) {
         int index = getItemIndex(itemQuery);
         items.remove(index);

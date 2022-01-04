@@ -14,6 +14,16 @@ public class Player {
         inventory.add(item);
     }
 
+    public Item takeItem(String itemQuery) {
+        Item item = this.location.getItemFromLocation(itemQuery);
+        this.location.removeItem(itemQuery);
+        return item;
+    }
+
+    public void collectItem(String itemQuery) {
+        this.addItemToInventory(takeItem(itemQuery));
+    }
+
     public void setLocation(Room room) {
         this.location = room;
     }
