@@ -1,5 +1,7 @@
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Room {
     public Room() {
@@ -56,11 +58,16 @@ public class Room {
         return connections.get(direction);
     }
 
+
     public String describeConnectingRooms() {
         StringBuilder output = new StringBuilder();
-        connections.forEach((direction, room) -> {
-            output.append(String.format("\nTo the %s, there is %s.", direction, room.getDescriptionEntrance()));
-        });
+        Iterator<Map.Entry<String, Room>> i = this.connections.entrySet().iterator();
+
+        while (i.hasNext()) {
+            Map.Entry connection = i.next();
+            output.append(String.format("To the %s, there is %s.", connection.getKey(), ((Room) connection.getValue()).getDescriptionEntrance()));
+            if (i.hasNext()) output.append("\n");
+        }
 
         return output.toString();
     }
