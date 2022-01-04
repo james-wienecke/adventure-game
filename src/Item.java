@@ -24,4 +24,8 @@ public class Item {
     public boolean isVisible() {
         return visible;
     }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
 }

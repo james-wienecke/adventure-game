@@ -26,6 +26,19 @@ public class Game {
                     case "search for items":
                         System.out.print(currentRoom.getVisibleItems());
                         break;
+                    case "look at":
+                        System.out.println("Look at what item?");
+                        System.out.print("> ");
+                        String itemQuery = sc.nextLine();
+                        String itemQueryReply = "";
+                        for (Item item : currentRoom.items) {
+                            if (itemQuery.equalsIgnoreCase(item.getShortDescription()))
+                                itemQueryReply = item.formatFullDescription();
+                        }
+                        if (itemQueryReply.isEmpty())
+                            itemQueryReply = "I don't know what that is!";
+                        System.out.println(itemQueryReply);
+                        break;
                     case "check exits":
                         System.out.printf("%s\n", currentRoom.describeConnectingRooms());
                         break;
