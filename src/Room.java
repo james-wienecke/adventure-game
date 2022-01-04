@@ -48,6 +48,11 @@ public class Room {
 
     public void addConnectingRoom(String direction, Room room) {
         connections.put(direction, room);
+        room.addOneWayConnection(Utility.oppositeDirection(direction), this);
+    }
+
+    public void addOneWayConnection(String direction, Room room) {
+        connections.put(direction, room);
     }
 
     public boolean isValidConnectionDirection(String direction) {
