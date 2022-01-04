@@ -47,6 +47,30 @@ public class Room {
         return output.toString();
     }
 
+    public boolean hasItem(String itemQuery) {
+        for (Item item : this.items) {
+            if (itemQuery.equalsIgnoreCase(item.getShortDescription()))
+                return true;
+        }
+        return false;
+    }
+
+    private int getItemIndex(String itemQuery) {
+        int index = -1;
+        if (hasItem(itemQuery)) {
+            for (int i = 0; i < this.items.size(); i++) {
+                if (this.items.get(i).getShortDescription().equalsIgnoreCase(itemQuery))
+                    return i;
+            }
+        }
+        return index;
+    }
+
+    public void removeItem(String itemQuery) {
+        int index = getItemIndex(itemQuery);
+        items.remove(index);
+    }
+
     public void addConnectingRoom(String direction, Room room) {
         connections.put(direction, room);
         room.addOneWayConnection(Utility.oppositeDirection(direction), this);
