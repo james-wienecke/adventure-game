@@ -1,32 +1,24 @@
 public class Utility {
 
     public static String oppositeDirection(String direction) {
-        String opposite ="";
         switch (direction) {
             case "north":
-                opposite = "south";
-                break;
+                return "south";
             case "northeast":
-                opposite = "southwest";
-                break;
+                return "southwest";
             case "east":
-                opposite = "west";
-                break;
+                return "west";
             case "southeast":
-                opposite = "northwest";
-                break;
+                return "northwest";
             case "south":
-                opposite = "north";
-                break;
+                return "north";
             case "southwest":
-                opposite = "northeast";
-                break;
+                return "northeast";
             case "west":
-                opposite = "east";
-                break;
+                return "east";
             case "northwest":
-                opposite = "southeast";
+                return "southeast";
         }
-        return opposite;
+        return "bad value";
     }
 }
