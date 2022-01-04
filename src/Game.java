@@ -18,24 +18,34 @@ public class Game {
 
         String input = "";
         while (input.compareToIgnoreCase("quit") != 0) {
-            System.out.print("> ");
-            input = this.sc.nextLine();
-            switch (input) {
-                case "look around":
-                    System.out.printf("%s\n", currentRoom.describeLocation());
-                    break;
-                case "search for items":
-                    System.out.print(currentRoom.getVisibleItems());
-                    break;
-                case "check exits":
-                    System.out.printf("%s\n", currentRoom.describeConnectingRooms());
-                    break;
-                case "quit":
-                    System.out.println("Bye bye!");
-                    break;
-                default:
-                    System.out.println("I don't know how to do that.");
-            }
+                System.out.print("> ");
+                input = this.sc.nextLine();
+                switch (input) {
+                    case "look around":
+                        System.out.printf("%s\n", currentRoom.describeLocation());
+                        break;
+                    case "search for items":
+                        System.out.print(currentRoom.getVisibleItems());
+                        break;
+                    case "check exits":
+                        System.out.printf("%s\n", currentRoom.describeConnectingRooms());
+                        break;
+                    case "go":
+                        System.out.println("Go where?");
+                        String direction = sc.nextLine();
+                        if (currentRoom.isValidConnectionDirection(direction)) {
+                            currentRoom = currentRoom.getConnectingRoom(direction);
+                            System.out.println(currentRoom.describeLocation());
+                        } else {
+                            System.out.println("Invalid direction.");
+                        }
+                        break;
+                    case "quit":
+                        System.out.println("Bye bye!");
+                        break;
+                    default:
+                        System.out.println("I don't know how to do that.");
+                }
         }
     }
 }

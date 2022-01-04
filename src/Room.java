@@ -48,8 +48,12 @@ public class Room {
         connections.put(direction, room);
     }
 
+    public boolean isValidConnectionDirection(String direction) {
+        return connections.containsKey(direction);
+    }
+
     public Room getConnectingRoom(String direction) {
-        return connections.get("direction");
+        return connections.get(direction);
     }
 
     public String describeConnectingRooms() {
