@@ -23,7 +23,7 @@ public class Game {
                     case "look around":
                         System.out.printf("%s\n", currentRoom.describeLocation());
                         break;
-                    case "search for items":
+                    case "search":
                         System.out.print(currentRoom.getVisibleItems());
                         break;
                     case "look at":
