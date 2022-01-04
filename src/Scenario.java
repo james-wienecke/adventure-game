@@ -12,6 +12,11 @@ public class Scenario {
         kitchenRoom.addItem(new Item("plastic box of delicious fruit-flavored tide detergent pods", "container of tide pods"));
         livingRoom.addConnectingRoom("north", kitchenRoom);
 
+        Room bedRoom = new Room("a comfy bedroom dominated by a queen-size bed with what looks to be a homemade quilt");
+        bedRoom.addItem(new Item("copy of \"Gravity's Rainbow\" by Thomas Pynchon", "book"));
+        bedRoom.addItem(new Item("purple classic Nintendo 3DS handheld game console", "3DS"));
+        livingRoom.addConnectingRoom("east", bedRoom);
+
         return startRoom;
     }
 }

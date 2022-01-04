@@ -32,6 +32,7 @@ public class Game {
                         break;
                     case "go":
                         System.out.println("Go where?");
+                        System.out.print("> ");
                         String direction = sc.nextLine();
                         if (currentRoom.isValidConnectionDirection(direction)) {
                             currentRoom = currentRoom.getConnectingRoom(direction);
