@@ -1,10 +1,15 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Room {
     public Room() {
-        this.description = "a small room";
+        this("a blank room");
+    }
+
+    public Room(String description) {
+        this.description = description;
         this.items = new LinkedList<Item>();
-        this.addItems(itemTestList());
+        this.connections = new HashMap<String, Room>();
     }
 
     private String description;
@@ -22,6 +27,7 @@ public class Room {
     }
 
     public LinkedList<Item> items;
+    public HashMap<String, Room> connections;
 
     public String getVisibleItems() {
         StringBuilder output = new StringBuilder();
@@ -34,6 +40,10 @@ public class Room {
             }
         }
         return output.toString();
+    }
+
+    public void addConnectingRoom(String direction, Room room) {
+        connections.put(direction, room);
     }
 
     private LinkedList<Item> itemTestList() {
