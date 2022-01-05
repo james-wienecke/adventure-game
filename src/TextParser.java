@@ -1,41 +1,54 @@
+import com.sun.nio.file.SensitivityWatchEventModifier;
+
 import java.util.Arrays;
 
 public class TextParser {
-    Sentence[] history;
-    int index;
-    TextParser() {
-        this.history = new Sentence[3];
-        this.index = 0;
-//        System.out.println(this.history.length);
-    }
+    private static Sentence[] history = new Sentence[5];
+    private static int index = 0;
 
-    public String addSentence(String input) {
+    public static String addSentence(String input) {
         Sentence newInput = new Sentence(input);
-        history[index] = newInput;
-//        System.out.println(Arrays.toString(history[index].getTokens()));
         incrementIndex();
+        history[index] = newInput;
         return input;
     }
 
-    private void incrementIndex() {
-        this.index = ++index % history.length;
+    private static void incrementIndex() {
+        index = ++index % history.length;
     }
 
-    public void test() {
+    public static Sentence getSentence() { return history[index]; }
+
+    public static Sentence getSentence(int i) {
+        // i is the number of commands into the past we want to look up
+        int indexLookup = index - i;
+        if (indexLookup < 0)
+            indexLookup = history.length + indexLookup;
+
+        return history[indexLookup];
+    }
+
+    public static Sentence[] getHistory() { return history; }
+
+    public static void test() {
         addSentence("Hello my baby");
         addSentence("Hello my darling");
         addSentence("Hello my ragtime girl");
         addSentence("4th sentence here!");
-        for (Sentence sentence : history) {
-            System.out.println(sentence.toString());
-            //System.out.println(Arrays.toString(sentence.getTokens()));
-        }
+        addSentence("5th lil thing also here");
+//        for (Sentence sentence : history) {
+//            try {
+//                System.out.println(sentence.toString());
+//            } catch(Exception e) {
+//                System.out.println("empty");
+//            }
+//        }
     }
 }
 
 class Sentence {
-    private String rawString;
-    private String[] tokens;
+    private final String rawString;
+    private final String[] tokens;
     Sentence(String input) {
         this.rawString = input;
         this.tokens = input.split(" ");
