@@ -1,6 +1,4 @@
-import com.sun.nio.file.SensitivityWatchEventModifier;
-
-import java.util.Arrays;
+package textutils;
 
 public class TextParser {
     private static Sentence[] history = new Sentence[5];
@@ -17,9 +15,9 @@ public class TextParser {
         index = ++index % history.length;
     }
 
-    public static Sentence getSentence() { return history[index]; }
+    private static Sentence getSentence() { return history[index]; }
 
-    public static Sentence getSentence(int i) {
+    private static Sentence getSentence(int i) {
         // i is the number of commands into the past we want to look up
         int indexLookup = index - i;
         if (indexLookup < 0)
@@ -28,7 +26,40 @@ public class TextParser {
         return history[indexLookup];
     }
 
-    public static Sentence[] getHistory() { return history; }
+    private static Sentence[] getHistory() { return history; }
+
+    private static Sentence[] getHistoryChronological() {
+        Sentence[] output = new Sentence[history.length];
+        for (int i = 0; i < history.length; i++) {
+            output[i] = getSentence(i);
+        }
+        return output;
+    }
+
+    private static String getRawSentence(Sentence s) {
+        return s.toString();
+    }
+
+    private static String[] getRawSentences(Sentence[] array) {
+        String[] output = new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            output[i] = array[i].toString();
+        }
+        return output;
+    }
+
+    public static String getRawSentenceByHistoryIndex(int i) {
+        return getRawSentence(getSentence(i));
+    }
+
+    public static String[] getRawSentences() {
+        return getRawSentences(history);
+    }
+
+    public static String[] getRawSentencesHistoryOrder() {
+        return getRawSentences(getHistoryChronological());
+    }
+
 
     public static void test() {
         addSentence("Hello my baby");
@@ -36,13 +67,6 @@ public class TextParser {
         addSentence("Hello my ragtime girl");
         addSentence("4th sentence here!");
         addSentence("5th lil thing also here");
-//        for (Sentence sentence : history) {
-//            try {
-//                System.out.println(sentence.toString());
-//            } catch(Exception e) {
-//                System.out.println("empty");
-//            }
-//        }
     }
 }
 
@@ -52,7 +76,6 @@ class Sentence {
     Sentence(String input) {
         this.rawString = input;
         this.tokens = input.split(" ");
-        //System.out.println(Arrays.toString(tokens));
     }
 
     public String toString() {

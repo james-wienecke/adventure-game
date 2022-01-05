@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Scanner;
+import textutils.TextParser;
 
 public class Game {
     public Game() {
@@ -88,13 +90,11 @@ public class Game {
                         System.out.println("Bye bye!");
                         break;
                     case "test":
-//                        TextParser parser = new TextParser();
+//                        textutils.TextParser parser = new textutils.TextParser();
                         TextParser.test();
-//                        System.out.println(TextParser.getSentence());
+//                        System.out.println(textutils.TextParser.getSentence());
                         // testing retrieval of previous input by 0-indexed reverse-order lookup
-//                        for (int i = 0; i < TextParser.getHistory().length; i++) {
-//                            System.out.println(TextParser.getSentence(i));
-//                        }
+                        System.out.println(Arrays.toString(TextParser.getRawSentencesHistoryOrder()));
                         break;
                     default:
                         System.out.println("I don't know how to do that.");
