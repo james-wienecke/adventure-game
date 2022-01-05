@@ -87,6 +87,15 @@ public class Game {
                     case "quit":
                         System.out.println("Bye bye!");
                         break;
+                    case "test":
+//                        TextParser parser = new TextParser();
+                        TextParser.test();
+//                        System.out.println(TextParser.getSentence());
+                        // testing retrieval of previous input by 0-indexed reverse-order lookup
+//                        for (int i = 0; i < TextParser.getHistory().length; i++) {
+//                            System.out.println(TextParser.getSentence(i));
+//                        }
+                        break;
                     default:
                         System.out.println("I don't know how to do that.");
                 }
