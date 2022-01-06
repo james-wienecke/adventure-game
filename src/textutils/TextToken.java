@@ -1,12 +1,9 @@
 package textutils;
 
-import textutils.intention.Intention;
-
 public class TextToken {
     private final String word;
     // type may in future become an arraylist to allow preforming additional checks for most likely part if there is overlap
     private TextTokenType type;
-    private Intention intention;
 
     TextToken(String word) {
         this.word = word;
@@ -26,10 +23,21 @@ public class TextToken {
             case "key":
             case "book":
             case "brick":
+            case "item":
+            case "shirt":
+            case "blouse":
+            case "pants":
+            case "shoe":
+            case "shoes":
             case "room":
             case "phone":
             case "torch":
             case "box":
+            case "container":
+            case "chest":
+            case "drawer":
+            case "shelf":
+            case "bookshelf":
             case "pod":
             case "house":
             case "fish":
@@ -43,15 +51,29 @@ public class TextToken {
             case "southwest":
             case "east":
             case "west":
+            case "inventory":
                 this.type = TextTokenType.NOUN;
                 break;
             case "go":
+            case "climb":
+            case "jump":
+            case "eat":
+            case "drink":
+            case "hit":
             case "take":
             case "look":
             case "examine":
             case "search":
             case "use":
             case "move":
+            case "return":
+            case "retreat":
+            case "grab":
+            case "get":
+            case "interact":
+            case "touch":
+            case "press":
+            case "push":
                 this.type = TextTokenType.VERB;
                 break;
             case "red":
@@ -77,6 +99,7 @@ public class TextToken {
             case "tall":
             case "short":
             case "tiny":
+            case "heavy":
                 this.type = TextTokenType.ADJECTIVE;
                 break;
                 //‘with’, ‘at’, ‘by’, ‘to’, ‘in’, ‘for’, ‘from’, ‘of’, ‘on’.
