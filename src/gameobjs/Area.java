@@ -1,5 +1,7 @@
 package gameobjs;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import utils.Direction;
 
@@ -9,6 +11,7 @@ public class Area extends GameObject {
 
     public Area(String name, String adjectives, String description) {
         super(name, adjectives, description);
+        connections = new HashMap<>();
     }
 
     public void addConnectingArea(Area room, Direction direction) {
@@ -34,5 +37,19 @@ public class Area extends GameObject {
 
     public void setAccessible(boolean accessible) {
         this.accessible = accessible;
+    }
+
+    public String describeConnectingRooms() {
+        StringBuilder output = new StringBuilder();
+        Iterator<Map.Entry<Direction, Area>> i = this.connections.entrySet().iterator();
+
+        while (i.hasNext()) {
+            Map.Entry connection = i.next();
+            output.append(String.format("To the %s, there is %s.",
+                    connection.getKey().toString(),
+                    ((Area) connection.getValue()).getName()));
+            if (i.hasNext()) output.append('\n'); // skip newlines if this is the last room
+        }
+        return output.toString();
     }
 }

@@ -40,11 +40,11 @@ public class GameObject {
     }
 
     public void addToContainer(GameObject object) {
-        contains.add(object);
+        this.contains.add(object);
     }
 
     public void addToContainer(ArrayList<GameObject> objects) {
-        contains.addAll(objects);
+        this.contains.addAll(objects);
     }
 
     public void setLocation(Area area) {

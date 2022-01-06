@@ -1,5 +1,9 @@
 package textutils.intention;
 
-public class Action {
+import textutils.TextToken;
 
+public class Action {
+    public Action(TextToken token) {
+
+    }
 }
