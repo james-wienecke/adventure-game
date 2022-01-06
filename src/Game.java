@@ -1,9 +1,9 @@
 import java.util.Arrays;
-import java.util.Scanner;
 
 import gameobjs.Player;
 import textutils.TextParser;
 import utils.Direction;
+import utils.Input;
 
 public class Game {
     public Game() {
@@ -15,7 +15,7 @@ public class Game {
     public Player player;
 
     // gonna do my best to only use the scanner in one class
-    protected Scanner sc = new Scanner(System.in);
+    protected Input sc = new Input();
 
     public void start() {
         System.out.println("Welcome to video game!");
@@ -127,9 +127,7 @@ public class Game {
                         System.out.println("Bye bye!");
                         break;
                     case "test":
-//                        textutils.TextParser parser = new textutils.TextParser();
                         TextParser.test();
-//                        System.out.println(textutils.TextParser.getSentence());
                         // testing retrieval of previous input by 0-indexed reverse-order lookup
                         System.out.println(Arrays.toString(TextParser.getRawSentencesHistoryOrder()));
                         break;
