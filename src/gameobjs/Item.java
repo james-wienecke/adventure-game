@@ -41,14 +41,4 @@ public class Item extends GameObject implements Acquirable {
     public void transferItem(Area area) {
         area.addToContainer(this);
     }
-
-    public boolean isKnown() {
-        return isKnown;
-    }
-
-    public void setKnown(boolean known) {
-        isKnown = known;
-    }
-
-
 }

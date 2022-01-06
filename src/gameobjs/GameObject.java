@@ -59,11 +59,49 @@ public class GameObject {
 
     public ArrayList<Item> getContains() { return this.contains; }
 
-    public void makeContainsVisible() {
-        if (this.contains.size() > 0) {
-            for (Item item : this.contains) {
-                if (item.isKnown()) item.setKnown(true);
+    public String getVisibleItems() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < contains.size(); i++) {
+            if (contains.get(i).isKnown()) {
+                output.append(contains.get(i).getName());
+                if (i < contains.size()) {
+                    output.append("\n");
+                }
             }
+        }
+        return output.toString();
+    }
+
+    public boolean isKnown() {
+        return isKnown;
+    }
+
+    public void setKnown(boolean known) {
+        isKnown = known;
+    }
+
+    public void makeContainedItemsVisible() {
+        for (Item item : contains) {
+            if (!item.isKnown()) item.setKnown(true);
+        }
+    }
+
+    public boolean hasItem(String itemName) {
+        for (Item item : contains) {
+            if (item.getName().equals(itemName))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasItem(Item itemLookup) {
+        return contains.contains(itemLookup);
+    }
+
+    public void transferItem(ArrayList<Item> formerContainer, Item item) {
+        if (hasItem(item)) {
+            addToContainer(this.contains);
+            formerContainer.remove(item);
         }
     }
 }

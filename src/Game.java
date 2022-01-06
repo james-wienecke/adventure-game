@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import gameobjs.Player;
@@ -30,23 +31,24 @@ public class Game {
                     case "look around":
                         System.out.printf("%s\n", player.getLocation().getDescription());
                         break;
-//                    case "search":
-//                        if (player.getLocation().getVisibleItems().isEmpty())
-//                            System.out.println("You don't see anything useful.");
-//                        else
-//                            System.out.print(player.getLocation().getVisibleItems());
-//                        break;
-//                    case "take":
-//                        System.out.println("Take what item?");
-//                        System.out.print("> ");
-//                        String takeQuery = sc.nextLine();
-//                        if (player.getLocation().hasItem(takeQuery)) {
-//                            player.collectItem(takeQuery);
-//                            System.out.printf("Took %s\n", takeQuery);
-//                        } else {
-//                            System.out.println("I can't find that item!");
-//                        }
-//                        break;
+                    case "search":
+                        if (player.getLocation().getVisibleItems().isEmpty())
+                            System.out.println("You don't see anything useful.");
+                        else
+                            System.out.print(player.getLocation().getVisibleItems());
+                        break;
+                    case "take":
+                        System.out.println("Take what item?");
+                        System.out.print("> ");
+                        String takeQuery = in.getString();
+                        if (player.getLocation().hasItem(takeQuery)) {
+
+//                            player.transferItem(player.getLocation().getContains(), );
+                            System.out.printf("Took %s\n", takeQuery);
+                        } else {
+                            System.out.println("I can't find that item!");
+                        }
+                        break;
 //                    case "look at":
 //                        System.out.println("Look at what item?");
 //                        System.out.print("> ");
