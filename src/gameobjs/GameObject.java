@@ -6,13 +6,15 @@ public class GameObject {
     private String name;
     private String[] adjectives;
     private String description;
-    private ArrayList<GameObject> contains;
+    private ArrayList<Item> contains;
     private Area location;
+    private boolean isKnown;
 
     public GameObject(String name, String adjectives, String description) {
         this.name = name;
         this.adjectives = adjectives.split(" ");
         this.description = description;
+        contains = new ArrayList<>();
     }
 
     public String getName() {
@@ -39,12 +41,12 @@ public class GameObject {
         this.description = description;
     }
 
-    public void addToContainer(GameObject object) {
-        this.contains.add(object);
+    public void addToContainer(Item item) {
+        this.contains.add(item);
     }
 
-    public void addToContainer(ArrayList<GameObject> objects) {
-        this.contains.addAll(objects);
+    public void addToContainer(ArrayList<Item> item) {
+        this.contains.addAll(item);
     }
 
     public void setLocation(Area area) {
@@ -53,5 +55,15 @@ public class GameObject {
 
     public Area getLocation() {
         return this.location;
+    }
+
+    public ArrayList<Item> getContains() { return this.contains; }
+
+    public void makeContainsVisible() {
+        if (this.contains.size() > 0) {
+            for (Item item : this.contains) {
+                if (item.isKnown()) item.setKnown(true);
+            }
+        }
     }
 }

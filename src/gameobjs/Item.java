@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Item extends GameObject implements Acquirable {
     private boolean isContainer = false;
+    private boolean isKnown = false;
 
     public Item(String name, String adjectives, String description) {
         super(name, adjectives, description);
@@ -15,15 +16,15 @@ public class Item extends GameObject implements Acquirable {
     }
 
     @Override
-    public void addToContainer(GameObject object) {
+    public void addToContainer(Item item) {
         if (isContainer)
-            super.addToContainer(object);
+            super.addToContainer(item);
     }
 
     @Override
-    public void addToContainer(ArrayList<GameObject> objects) {
+    public void addToContainer(ArrayList<Item> item) {
         if (isContainer)
-            super.addToContainer(objects);
+            super.addToContainer(item);
     }
 
     @Override
@@ -40,4 +41,14 @@ public class Item extends GameObject implements Acquirable {
     public void transferItem(Area area) {
         area.addToContainer(this);
     }
+
+    public boolean isKnown() {
+        return isKnown;
+    }
+
+    public void setKnown(boolean known) {
+        isKnown = known;
+    }
+
+
 }

@@ -16,6 +16,7 @@ public abstract class Actor extends GameObject implements Mobile {
     public void moveToAreaByDirection(Direction direction) {
         if (this.getLocation().isValidConnection(direction)) {
             this.changeLocation(this.getLocation().getConnectingRoom(direction));
+            this.getLocation().makeContainsVisible();
         }
     }
 }

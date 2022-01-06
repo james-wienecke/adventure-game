@@ -1,5 +1,6 @@
 package gameobjs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,11 +8,14 @@ import utils.Direction;
 
 public class Area extends GameObject {
     private Map<Direction, Area> connections;
+    private ArrayList<Item> contains;
     private boolean accessible;
+//    private boolean isKnown;
 
     public Area(String name, String adjectives, String description) {
         super(name, adjectives, description);
         connections = new HashMap<>();
+//        isKnown = false;
     }
 
     public void addConnectingArea(Area room, Direction direction) {
@@ -49,6 +53,19 @@ public class Area extends GameObject {
                     connection.getKey().toString(),
                     ((Area) connection.getValue()).getName()));
             if (i.hasNext()) output.append('\n'); // skip newlines if this is the last room
+        }
+        return output.toString();
+    }
+
+    public String getVisibleItems() {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < contains.size(); i++) {
+            if (contains.get(i).isKnown()) {
+                output.append(contains.get(i).getName());
+                if (i < contains.size()) {
+                    output.append("\n");
+                }
+            }
         }
         return output.toString();
     }
