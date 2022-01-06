@@ -1,8 +1,6 @@
 package textutils.intention;
 
-import org.w3c.dom.Text;
 import textutils.TextToken;
-
 import java.util.ArrayList;
 
 public class Concept {

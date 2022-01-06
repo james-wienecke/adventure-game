@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Item extends GameObject implements Acquirable {
     private boolean isContainer = false;
-    private GameObject location;
 
     public Item(String name, String adjectives, String description) {
         super(name, adjectives, description);
@@ -41,8 +40,4 @@ public class Item extends GameObject implements Acquirable {
     public void transferItem(Area area) {
         area.addToContainer(this);
     }
-
-    public void setLocation(GameObject location) {
-        this.location = location;
-    };
 }

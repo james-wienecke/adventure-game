@@ -7,6 +7,7 @@ public class GameObject {
     private String[] adjectives;
     private String description;
     private ArrayList<GameObject> contains;
+    private Area location;
 
     public GameObject(String name, String adjectives, String description) {
         this.name = name;
@@ -44,5 +45,13 @@ public class GameObject {
 
     public void addToContainer(ArrayList<GameObject> objects) {
         contains.addAll(objects);
+    }
+
+    public void setLocation(Area area) {
+        this.location = area;
+    }
+
+    public Area getLocation() {
+        return this.location;
     }
 }
