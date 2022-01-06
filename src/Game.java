@@ -15,7 +15,7 @@ public class Game {
     public Player player;
 
     // gonna do my best to only use the scanner in one class
-    protected Input sc = new Input();
+    protected Input in = new Input();
 
     public void start() {
         System.out.println("Welcome to video game!");
@@ -25,7 +25,7 @@ public class Game {
         String input = "";
         while (input.compareToIgnoreCase("quit") != 0) {
                 System.out.print("> ");
-                input = this.sc.nextLine();
+                input = in.getString();
                 switch (input) {
                     case "look around":
                         System.out.printf("%s\n", player.getLocation().getDescription());
@@ -69,9 +69,9 @@ public class Game {
                     case "go":
                         System.out.println("Go where?");
                         System.out.print("> ");
-                        String in = sc.nextLine();
+                        String option = in.getString();
                         Direction dir;
-                        switch (in) {
+                        switch (option) {
                             case "north":
                             case "n":
                                 dir = Direction.N;
