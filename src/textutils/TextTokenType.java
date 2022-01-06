@@ -15,5 +15,6 @@ public enum TextTokenType {
     DETERMINER,
     // specifies the start of a second Action and Intention
     CONJUNCTION,
+    // identifier for token have indeterminate type
     UNKNOWN,
 }
