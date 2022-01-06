@@ -1,5 +1,7 @@
 package textutils;
 
+import textutils.intention.Intention;
+
 public class TextToken {
     private final String word;
     // type may in future become an arraylist to allow preforming additional checks for most likely part if there is overlap
