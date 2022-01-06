@@ -1,3 +1,5 @@
+package utils;
+
 public enum Direction {
     // compass directions
     NW,
@@ -49,5 +51,9 @@ public enum Direction {
         RIGHT.opposite = LEFT;
         FRONT.opposite = BACK;
         BACK.opposite = FRONT;
+    }
+
+    public static Direction getOpposite(Direction direction) {
+        return direction.opposite;
     }
 }
