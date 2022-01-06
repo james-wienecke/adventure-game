@@ -26,19 +26,4 @@ public class Item extends GameObject implements Acquirable {
         if (isContainer)
             super.addToContainer(item);
     }
-
-    @Override
-    public void transferItem(Item container) {
-        container.addToContainer(this);
-    }
-
-    @Override
-    public void transferItem(GameObject container) {
-        container.addToContainer(this);
-    }
-
-    @Override
-    public void transferItem(Area area) {
-        area.addToContainer(this);
-    }
 }

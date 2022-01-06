@@ -2,10 +2,10 @@ package gameobjs;
 
 import utils.Direction;
 
+import java.util.ArrayList;
+
 interface Acquirable {
-    void transferItem(Item container);
-    void transferItem(Area area);
-    void transferItem(GameObject container);
+    void transferItem(ArrayList<Item> formerContainer, Item item);
 }
 
 interface Mobile {
