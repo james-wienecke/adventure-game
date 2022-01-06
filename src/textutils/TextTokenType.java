@@ -7,8 +7,6 @@ public enum TextTokenType {
     VERB,
     // specifier for Concepts
     ADJECTIVE,
-    // specifier for Concepts
-    ARTICLE,
     // identifier for indirect/secondary Concepts
     PREPOSITION,
     // specifier for Concepts
@@ -16,5 +14,9 @@ public enum TextTokenType {
     // specifies the start of a second Action and Intention
     CONJUNCTION,
     // identifier for token have indeterminate type
-    UNKNOWN,
+    UNKNOWN;
+
+//    public TextTokenType lookupTokenType(TextToken token) {
+
+//    }
 }
