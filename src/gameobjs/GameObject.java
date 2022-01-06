@@ -14,7 +14,7 @@ public class GameObject {
         this.name = name;
         this.adjectives = adjectives.split(" ");
         this.description = description;
-        contains = new ArrayList<>();
+        this.contains = new ArrayList<>();
     }
 
     public String getName() {
@@ -61,10 +61,10 @@ public class GameObject {
 
     public String getVisibleItems() {
         StringBuilder output = new StringBuilder();
-        for (int i = 0; i < contains.size(); i++) {
-            if (contains.get(i).isKnown()) {
-                output.append(contains.get(i).getName());
-                if (i < contains.size()) {
+        for (int i = 0; i < this.contains.size(); i++) {
+            if (this.contains.get(i).isKnown()) {
+                output.append(this.contains.get(i).getName());
+                if (i < this.contains.size()) {
                     output.append("\n");
                 }
             }
@@ -81,13 +81,13 @@ public class GameObject {
     }
 
     public void makeContainedItemsVisible() {
-        for (Item item : contains) {
+        for (Item item : this.contains) {
             if (!item.isKnown()) item.setKnown(true);
         }
     }
 
     public boolean hasItem(String itemName) {
-        for (Item item : contains) {
+        for (Item item : this.contains) {
             if (item.getName().equals(itemName))
                 return true;
         }
@@ -95,13 +95,23 @@ public class GameObject {
     }
 
     public boolean hasItem(Item itemLookup) {
-        return contains.contains(itemLookup);
+        return this.contains.contains(itemLookup);
+    }
+
+    public Item lookupItemFromContains(String itemName) {
+        int tgtIndex = -1;
+        for (int i = 0; i < this.contains.size(); i++) {
+            if (this.contains.get(i).getName().equals(itemName)) {
+                tgtIndex = i;
+                System.out.println("Found item");
+            }
+        }
+        System.out.println(this.contains.get(tgtIndex).getName());
+        return this.contains.get(tgtIndex);
     }
 
     public void transferItem(ArrayList<Item> formerContainer, Item item) {
-        if (hasItem(item)) {
-            addToContainer(this.contains);
+            this.contains.add(item);
             formerContainer.remove(item);
-        }
     }
 }

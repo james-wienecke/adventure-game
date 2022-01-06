@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import gameobjs.Area;
 import gameobjs.Player;
 import textutils.TextParser;
 import utils.Direction;
@@ -41,9 +42,10 @@ public class Game {
                         System.out.println("Take what item?");
                         System.out.print("> ");
                         String takeQuery = in.getString();
-                        if (player.getLocation().hasItem(takeQuery)) {
-
-//                            player.transferItem(player.getLocation().getContains(), );
+                        Area pLocation = player.getLocation();
+                        if (pLocation.hasItem(takeQuery)) {
+                            player.transferItem(pLocation.getContains(), pLocation.lookupItemFromContains(takeQuery));
+                            System.out.println(player.getContains().toString());
                             System.out.printf("Took %s\n", takeQuery);
                         } else {
                             System.out.println("I can't find that item!");
@@ -62,9 +64,9 @@ public class Game {
 //                            itemQueryReply = "I don't know what that is!";
 //                        System.out.println(itemQueryReply);
 //                        break;
-//                    case "inventory":
-//                        System.out.print(player.listFormatInventory());
-//                        break;
+                    case "inventory":
+                        System.out.print(player.getVisibleItems());
+                        break;
                     case "check exits":
                         System.out.printf("%s\n", player.getLocation().describeConnectingRooms());
                         break;
