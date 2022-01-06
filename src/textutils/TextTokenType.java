@@ -1,8 +1,19 @@
 package textutils;
 
 public enum TextTokenType {
+    // assigned to tokens linked to Concepts
     NOUN,
+    // assigned to tokens linked to Actions
     VERB,
+    // specifier for Concepts
     ADJECTIVE,
-    ARTICLE
+    // specifier for Concepts
+    ARTICLE,
+    // identifier for indirect/secondary Concepts
+    PREPOSITION,
+    // specifier for Concepts
+    DETERMINER,
+    // specifies the start of a second Action and Intention
+    CONJUNCTION,
+    UNKNOWN,
 }
