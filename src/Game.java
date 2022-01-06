@@ -15,7 +15,7 @@ public class Game {
     public Player player;
 
     // gonna do my best to only use the scanner in one class
-    protected Input in = new Input();
+    protected static Input in = new Input();
 
     public void start() {
         System.out.println("Welcome to video game!");

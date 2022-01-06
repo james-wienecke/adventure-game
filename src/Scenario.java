@@ -1,4 +1,5 @@
 import gameobjs.Area;
+import gameobjs.Item;
 import utils.Direction;
 
 public class Scenario {
@@ -31,6 +32,8 @@ public class Scenario {
 
         startRoom.addConnectingArea(livingRoom, Direction.E);
         livingRoom.addConnectingArea(kitchen, Direction.N);
+
+        startRoom.addToContainer(new Item("key", "shiny gold", "a small metal house key"));
 
         return startRoom;
     }
