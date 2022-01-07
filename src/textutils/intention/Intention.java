@@ -43,6 +43,28 @@ public class Intention {
             }
 
         }
+
+
+        // now Action is developed and provided context
+
+        switch (this.action.getGameVerb().getType()) {
+            case NO_OBJ:
+
+                break;
+            case ONE_OBJ:
+
+                break;
+
+            case TWO_OBJ:
+
+                break;
+            case SYSTEM:
+
+                break;
+            case UNKNOWN:
+
+                break;
+        }
     }
 
         public static void main(String[] args) {

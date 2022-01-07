@@ -90,7 +90,7 @@ class Sentence {
 //            System.out.println(tokens[i].getType().toString());
         }
 
-//        intention = new Intention(tokens);
+        intention = new Intention(tokens);
     }
 
     public String toString() {
