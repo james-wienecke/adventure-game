@@ -1,5 +1,6 @@
 package textutils.intention;
 
+import gameobjs.GameObject;
 import gameobjs.Item;
 import textutils.TextToken;
 
@@ -97,7 +98,7 @@ public class Concept {
 //        // the player specified these two adjectives to target a specific key
 //        // input was "adj1 adj2 key"
 //        TextToken adj1 = new TextToken("gold");
-//        TextToken adj2 = new TextToken("big");
+//        TextToken adj2 = new TextToken("small");
 //        ArrayList<TextToken> adjs = new ArrayList<>();
 //        adjs.add(adj1);
 //        adjs.add(adj2);
