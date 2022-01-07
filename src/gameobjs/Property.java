@@ -12,3 +12,7 @@ interface Mobile {
     void changeLocation(Area area);
     void moveToAreaByDirection(Direction direction);
 }
+
+interface Lookable {
+    String lookAround();
+}

@@ -2,7 +2,7 @@ package gameobjs;
 
 import java.util.ArrayList;
 
-public class GameObject {
+public class GameObject implements Lookable {
     private String name;
     private String[] adjectives;
     private String description;
@@ -113,5 +113,27 @@ public class GameObject {
     public void transferItem(ArrayList<Item> formerContainer, Item item) {
             this.contains.add(item);
             formerContainer.remove(item);
+    }
+
+    public String getNameWithAdjectives() {
+        StringBuffer sb = new StringBuffer();
+        for (String adj : this.adjectives) {
+            sb.append(adj).append(' ');
+        }
+        return sb.append(this.name).toString();
+    }
+
+    public String lookAround() {
+        StringBuffer sb = new StringBuffer("You see ").append(this.description);
+        sb.append("\nInside this, you see: ");
+        if (this.contains.size() > 0) {
+            for (Item item : this.contains) {
+                sb.append('\n').append(item.getNameWithAdjectives());
+            }
+        } else {
+            sb.append("nothing\n");
+        }
+
+        return sb.toString();
     }
 }
