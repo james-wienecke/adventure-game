@@ -44,30 +44,39 @@ public class Intention {
 
         }
 
-
-        // now Action is developed and provided context
-
-        switch (this.action.getGameVerb().getType()) {
-            case NO_OBJ:
-
-                break;
-            case ONE_OBJ:
-
-                break;
-
-            case TWO_OBJ:
-
-                break;
-            case SYSTEM:
-
-                break;
-            case UNKNOWN:
-
-                break;
-        }
+//        switch (this.action.getGameVerb().getType()) {
+//            case NO_OBJ:
+//
+//                break;
+//            case ONE_OBJ:
+//
+//                break;
+//
+//            case TWO_OBJ:
+//                System.out.println("currently unimplemented");
+//                break;
+//            case SYSTEM:
+//
+//                break;
+//            case UNKNOWN:
+//
+//                break;
+//        }
     }
 
-        public static void main(String[] args) {
+    public Action getAction() {
+        return action;
+    }
+
+    public Concept getDirectObject() {
+        return directObject;
+    }
+
+    public Concept getIndirectObject() {
+        return indirectObject;
+    }
+
+    public static void main(String[] args) {
         // player searches this testObject's contents to do something with an item inside
         GameObject testObj = new GameObject("test", "","a test container");
         // these three keys are the contents of testObject

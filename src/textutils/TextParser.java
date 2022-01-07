@@ -19,7 +19,7 @@ public class TextParser {
         index = ++index % history.length;
     }
 
-    private static Sentence getSentence() { return history[index]; }
+    public static Sentence getSentence() { return history[index]; }
 
     private static Sentence getSentence(int i) {
         // i is the number of commands into the past we want to look up
@@ -74,7 +74,7 @@ public class TextParser {
     }
 }
 
-class Sentence {
+public class Sentence {
     private final String rawString;
     private final String[] words;
     private TextToken[] tokens;
@@ -101,4 +101,7 @@ class Sentence {
         return this.words;
     }
 
+    public Intention getIntention() {
+        return intention;
+    }
 }

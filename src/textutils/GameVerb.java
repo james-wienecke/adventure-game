@@ -6,7 +6,7 @@ public enum GameVerb {
 
     // ONE_OBJ
     VERB_GO(Type.ONE_OBJ, new String[] {"go", "walk", "travel"}),
-    VERB_GET(Type.ONE_OBJ, new String[] {"get", "g", "take", "grab", "acquire"}),
+    VERB_GET(Type.ONE_OBJ, new String[] {"get", "g", "take", "grab", "acquire", "pickup"}),
     VERB_OPEN(Type.ONE_OBJ, new String[] {"open"}),
     VERB_DROP(Type.ONE_OBJ, new String[] {"drop", "discard"}),
     VERB_EXAMINE(Type.ONE_OBJ, new String[] {"examine", "inspect", "scrutinize", "appraise"}),
