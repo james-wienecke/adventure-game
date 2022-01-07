@@ -1,6 +1,5 @@
 package textutils.intention;
 
-import gameobjs.GameObject;
 import gameobjs.Item;
 import textutils.TextToken;
 
@@ -86,32 +85,32 @@ public class Concept {
         }
         return negativeMatches == item.getAdjectives().length;
     }
-
-    public static void main(String[] args) {
-        // player searches this testObject's contents to do something with an item inside
-        GameObject testObj = new GameObject("test", "","a test container");
-        // these three keys are the contents of testObject
-        testObj.addToContainer(new Item("key", "big silver", "the wrong house key"));
-        testObj.addToContainer(new Item("key", "small gold", "the right house key"));
-        testObj.addToContainer(new Item("key", "", "another wrong house key"));
-
-        // the player specified these two adjectives to target a specific key
-        // input was "adj1 adj2 key"
-        TextToken adj1 = new TextToken("gold");
-        TextToken adj2 = new TextToken("big");
-        ArrayList<TextToken> adjs = new ArrayList<>();
-        adjs.add(adj1);
-        adjs.add(adj2);
-        // a Concept was created of a "key" with the adjectives provided
-        Concept concept = new Concept(new TextToken("key"), adjs);
-
-        // concept attempts to find intended target of player's Intention
-        concept.findTarget(testObj.getContains());
-
-        if (concept.getTarget() != null) {
-            System.out.println(concept.getTarget().getDescription());
-        } else {
-            System.out.println("no matches ;I");
-        }
-    }
+//
+//    public static void main(String[] args) {
+//        // player searches this testObject's contents to do something with an item inside
+//        GameObject testObj = new GameObject("test", "","a test container");
+//        // these three keys are the contents of testObject
+//        testObj.addToContainer(new Item("key", "big silver", "the wrong house key"));
+//        testObj.addToContainer(new Item("key", "small gold", "the right house key"));
+//        testObj.addToContainer(new Item("key", "", "another wrong house key"));
+//
+//        // the player specified these two adjectives to target a specific key
+//        // input was "adj1 adj2 key"
+//        TextToken adj1 = new TextToken("gold");
+//        TextToken adj2 = new TextToken("big");
+//        ArrayList<TextToken> adjs = new ArrayList<>();
+//        adjs.add(adj1);
+//        adjs.add(adj2);
+//        // a Concept was created of a "key" with the adjectives provided
+//        Concept concept = new Concept(new TextToken("key"), adjs);
+//
+//        // concept attempts to find intended target of player's Intention
+//        concept.findTarget(testObj.getContains());
+//
+//        if (concept.getTarget() != null) {
+//            System.out.println(concept.getTarget().getDescription());
+//        } else {
+//            System.out.println("no matches ;I");
+//        }
+//    }
 }
