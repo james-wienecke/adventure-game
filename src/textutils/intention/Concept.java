@@ -5,12 +5,14 @@ import gameobjs.Item;
 import textutils.TextToken;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Concept {
     private Item target;
     private String targetPlainText;
     private TextToken noun;
     private ArrayList<TextToken> adjectives;
+    private String[] rawAdjs;
     public Concept(TextToken noun) {
         this.noun = noun;
         this.targetPlainText = this.noun.getWord();
@@ -19,6 +21,10 @@ public class Concept {
     public Concept(TextToken noun, ArrayList<TextToken> adjectives) {
         this.noun = noun;
         this.adjectives = adjectives;
+        this.rawAdjs = new String[adjectives.size()];
+        for (int i = 0; i < adjectives.size(); i++) {
+            this.rawAdjs[i] = adjectives.get(i).getWord();
+        }
         StringBuffer sb = new StringBuffer();
         for (TextToken adj : this.adjectives) {
             sb.append(adj.getWord()).append(" ");
@@ -50,36 +56,44 @@ public class Concept {
                 candidates.add(obj);
             }
         }
+        // narrow down the target by trying to remove candidates that do not have the right adjectives
         if (candidates.size() > 1 && adjectives != null) {
-            // narrow down candidates using adjectives if possible
-            for (Item obj : candidates) {
-                // compare each adjective in current Item
-                for (String canAdj : obj.getAdjectives()) {
-                    // to each adjective in the Concept
-                    for (TextToken adj : adjectives) {
-                        // if it does not have the adjective, remove it from the candidate list
-                        if (!canAdj.equalsIgnoreCase(adj.getWord())) {
-                            candidates.remove(obj);
-                        }
-                    }
-                }
-            }
-            if (candidates.size() > 1) {
-                // temporary conditional result, will be replaced when normal input produces expected output
-                System.out.println("You need to be more specific");
+            candidates.removeIf(this::noAdjectivesMatch);
+        }
+        // if adjectives still can't narrow it down enough, targeting fails
+        if (candidates.size() > 1) {
+            // temporary conditional result, will be replaced when normal input produces expected output
+            System.out.println("You need to be more specific");
+            this.target = null;
+        } else {
+            // if all candidates have been eliminated, targeting fails
+            if (candidates.size() == 0) {
+                this.target = null;
+            } else {
+                // good end, we found our target
+                this.target = candidates.get(0);
             }
         }
-        this.target = candidates.get(0);
+    }
+
+    private boolean noAdjectivesMatch(Item item) {
+//        int potentialMatches = item.getAdjectives().length;
+        int negativeMatches = 0;
+        for (String itemAdj : item.getAdjectives()) {
+            if (Arrays.stream(this.rawAdjs).noneMatch(adj -> adj.equals(itemAdj))) {
+                negativeMatches++;
+            }
+        }
+        return negativeMatches == item.getAdjectives().length;
     }
 
     public static void main(String[] args) {
-//        TextParser down testing
         GameObject testObj = new GameObject("test", "","a test container");
         testObj.addToContainer(new Item("key", "big silver", "the wrong house key"));
         testObj.addToContainer(new Item("key", "small gold", "the right house key"));
         testObj.addToContainer(new Item("key", "", "another wrong house key"));
         TextToken adj1 = new TextToken("gold");
-        TextToken adj2 = new TextToken("small");
+        TextToken adj2 = new TextToken("big");
         ArrayList<TextToken> adjs = new ArrayList<>();
         adjs.add(adj1);
         adjs.add(adj2);
@@ -87,6 +101,10 @@ public class Concept {
 
         concept.findTarget(testObj.getContains());
 
-        System.out.println(concept.getTarget().getDescription());
+        if (concept.getTarget() != null) {
+            System.out.println(concept.getTarget().getDescription());
+        } else {
+            System.out.println("no matches ;I");
+        }
     }
 }
