@@ -5,7 +5,7 @@ public class TextToken {
     // type may in future become an arraylist to allow preforming additional checks for most likely part if there is overlap
     private TextTokenType type;
 
-    TextToken(String word) {
+    public TextToken(String word) {
         this.word = word;
         assignTokenType();
     }
