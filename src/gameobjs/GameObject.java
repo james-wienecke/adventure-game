@@ -136,4 +136,11 @@ public class GameObject implements Lookable {
 
         return sb.toString();
     }
+
+    public String takeItem(Item target) {
+        this.transferItem(this.getLocation().getContains(), target);
+        StringBuffer sb = new StringBuffer("Got ").append(target.getNameWithAdjectives());
+        System.out.println(this.getVisibleItems());
+        return sb.toString();
+    }
 }
