@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 interface Acquirable {
     void transferItem(ArrayList<Item> formerContainer, Item item);
+//    void takeItem()
 }
 
 interface Mobile {
@@ -16,3 +17,4 @@ interface Mobile {
 interface Lookable {
     String lookAround();
 }
+

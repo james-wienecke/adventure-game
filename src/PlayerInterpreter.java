@@ -1,3 +1,5 @@
+import gameobjs.Area;
+import gameobjs.Item;
 import gameobjs.Player;
 import textutils.Sentence;
 import textutils.TextParser;
@@ -22,7 +24,10 @@ public class PlayerInterpreter {
 
                         break;
                     case VERB_GET:
-
+                        Area context = player.getLocation();
+                        lastSentence.getIntention().getDirectObject().findTarget(context.getContains());
+                        Item target = lastSentence.getIntention().getDirectObject().getTarget();
+                        System.out.println(player.takeItem(target));
                         break;
                 }
 

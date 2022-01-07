@@ -13,4 +13,11 @@ public class Player extends Actor {
         super.moveToAreaByDirection(direction);
         this.getLocation().makeContainedItemsVisible();
     }
+
+    public String takeItem(Item target) {
+        this.transferItem(this.getLocation().getContains(), target);
+        StringBuffer sb = new StringBuffer("Got ").append(target.getNameWithAdjectives());
+        System.out.println(this.getVisibleItems());
+        return sb.toString();
+    }
 }
