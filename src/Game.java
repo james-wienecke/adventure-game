@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import gameobjs.Area;
+import gameobjs.Entity;
 import gameobjs.Player;
 import textutils.TextParser;
 import utils.Direction;
@@ -14,7 +15,7 @@ public class Game {
         this.player = new Player("Player", "", Scenario.demo2(), "this is you");
     }
 
-    private Player player;
+    private Entity player;
 
     // gonna do my best to only use the scanner in one class
     protected static Input in = new Input();

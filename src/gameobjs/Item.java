@@ -16,13 +16,13 @@ public class Item extends Entity implements Acquirable {
     }
 
     @Override
-    public void addToContainer(Item item) {
+    public void addToContainer(Entity item) {
         if (isContainer)
             super.addToContainer(item);
     }
 
     @Override
-    public void addToContainer(ArrayList<Item> item) {
+    public void addToContainer(ArrayList<Entity> item) {
         if (isContainer)
             super.addToContainer(item);
     }

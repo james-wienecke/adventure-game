@@ -8,7 +8,7 @@ import utils.Direction;
 
 public class Area extends GameObject {
     private Map<Direction, Area> connections;
-    private ArrayList<Item> contains;
+    private ArrayList<Entity> contains;
     private boolean accessible;
 
     public Area(String name, String adjectives, String description) {

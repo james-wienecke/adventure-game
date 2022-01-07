@@ -1,8 +1,7 @@
 package textutils;
 
 import gameobjs.Area;
-import gameobjs.Item;
-import gameobjs.Player;
+import gameobjs.Entity;
 import textutils.intention.Intention;
 
 import java.util.Locale;
@@ -19,8 +18,6 @@ public class Sentence {
         tokens = new TextToken[words.length];
         for (int i = 0; i < words.length; i++) {
             tokens[i] = new TextToken(words[i]);
-//            System.out.println(tokens[i].getWord());
-//            System.out.println(tokens[i].getType().toString());
         }
 
         intention = new Intention(tokens);
@@ -38,12 +35,12 @@ public class Sentence {
         return intention;
     }
 
-    public Item getIntentionTarget(Area context) {
+    public Entity getIntentionTarget(Area context) {
         this.intention.getDirectObject().findTarget(context.getContains());
         return this.getIntention().getDirectObject().getTarget();
     }
 
-    public Item getIntentionTarget(Player context) {
+    public Entity getIntentionTarget(Entity context) {
         this.intention.getDirectObject().findTarget(context.getContains());
         return this.getIntention().getDirectObject().getTarget();
     }

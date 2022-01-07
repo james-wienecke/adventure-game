@@ -1,14 +1,14 @@
 package textutils.intention;
 
 import gameobjs.GameObject;
-import gameobjs.Item;
+import gameobjs.Entity;
 import textutils.TextToken;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Concept {
-    private Item target;
+    private Entity target;
     private String targetPlainText;
     private TextToken noun;
     private ArrayList<TextToken> adjectives;
@@ -33,7 +33,7 @@ public class Concept {
         this.targetPlainText = sb.toString();
     }
 
-    public Item getTarget() {
+    public Entity getTarget() {
         return target;
     }
 
@@ -49,9 +49,9 @@ public class Concept {
         return adjectives;
     }
 
-    public void findTarget(ArrayList<Item> gameObjectArrayList) {
-        ArrayList<Item> candidates = new ArrayList<>();
-        for (Item obj : gameObjectArrayList) {
+    public void findTarget(ArrayList<Entity> gameObjectArrayList) {
+        ArrayList<Entity> candidates = new ArrayList<>();
+        for (Entity obj : gameObjectArrayList) {
             if (obj.getName().equalsIgnoreCase(this.noun.getWord())) {
                 candidates.add(obj);
             }
@@ -76,7 +76,7 @@ public class Concept {
         }
     }
 
-    private boolean noAdjectivesMatch(Item item) {
+    private boolean noAdjectivesMatch(Entity item) {
 //        int potentialMatches = item.getAdjectives().length;
         int negativeMatches = 0;
         for (String itemAdj : item.getAdjectives()) {
@@ -91,9 +91,9 @@ public class Concept {
 //        // player searches this testObject's contents to do something with an item inside
 //        GameObject testObj = new GameObject("test", "","a test container");
 //        // these three keys are the contents of testObject
-//        testObj.addToContainer(new Item("key", "big silver", "the wrong house key"));
-//        testObj.addToContainer(new Item("key", "small gold", "the right house key"));
-//        testObj.addToContainer(new Item("key", "", "another wrong house key"));
+//        testObj.addToContainer(new Entity("key", "big silver", "the wrong house key"));
+//        testObj.addToContainer(new Entity("key", "small gold", "the right house key"));
+//        testObj.addToContainer(new Entity("key", "", "another wrong house key"));
 //
 //        // the player specified these two adjectives to target a specific key
 //        // input was "adj1 adj2 key"
