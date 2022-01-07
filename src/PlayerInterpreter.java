@@ -9,26 +9,31 @@ public class PlayerInterpreter {
 
     public static void interpret(String input, Player player) {
         TextParser.addSentence(input);
-        Sentence lastSentence = TextParser.getSentence();
-        switch (lastSentence.getVerb().getType()) {
+        Sentence lastSent = TextParser.getSentence();
+        switch (lastSent.getVerb().getType()) {
             case NO_OBJ:
-                switch (lastSentence.getVerb()) {
+                switch (lastSent.getVerb()) {
                     case VERB_LOOK:
                         System.out.println(player.getLocation().lookAround());
                         break;
                 }
                 break;
             case ONE_OBJ:
-                switch (lastSentence.getVerb()) {
+                switch (lastSent.getVerb()) {
                     case VERB_GO:
 
                         break;
                     case VERB_GET:
-                        Area context = player.getLocation();
-                        lastSentence.getIntention().getDirectObject().findTarget(context.getContains());
-                        Item target = lastSentence.getIntention().getDirectObject().getTarget();
-                        System.out.println(player.takeItem(target));
+                        Item targetGet = lastSent.getIntentionTarget(player.getLocation());
+                        System.out.println(player.takeItem(targetGet));
                         break;
+                    case VERB_DROP:
+                        Item targetDrop = lastSent.getIntentionTarget(player);
+                        System.out.println(player.dropItem(targetDrop));
+                        break;
+                    case VERB_EXAMINE:
+                        Item targetExamine = lastSent.getIntentionTarget(player.getLocation());
+                        System.out.println(player.examineItem(targetExamine));
                 }
 
                 break;

@@ -1,5 +1,8 @@
 package textutils;
 
+import gameobjs.Area;
+import gameobjs.Item;
+import gameobjs.Player;
 import textutils.intention.Intention;
 
 import java.util.Locale;
@@ -35,6 +38,15 @@ public class Sentence {
         return intention;
     }
 
+    public Item getIntentionTarget(Area context) {
+        this.intention.getDirectObject().findTarget(context.getContains());
+        return this.getIntention().getDirectObject().getTarget();
+    }
+
+    public Item getIntentionTarget(Player context) {
+        this.intention.getDirectObject().findTarget(context.getContains());
+        return this.getIntention().getDirectObject().getTarget();
+    }
 
     public GameVerb getVerb() {
         return this.intention.getAction().getGameVerb();

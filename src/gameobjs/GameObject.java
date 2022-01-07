@@ -115,7 +115,7 @@ public class GameObject implements Lookable {
             formerContainer.remove(item);
     }
 
-    public String getNameWithAdjectives() {
+    public String getNameWithAdjs() {
         StringBuffer sb = new StringBuffer();
         for (String adj : this.adjectives) {
             sb.append(adj).append(' ');
@@ -128,7 +128,7 @@ public class GameObject implements Lookable {
         sb.append("\nInside this, you see: ");
         if (this.contains.size() > 0) {
             for (Item item : this.contains) {
-                sb.append('\n').append(item.getNameWithAdjectives());
+                sb.append('\n').append(item.getNameWithAdjs());
             }
         } else {
             sb.append("nothing\n");
@@ -139,8 +139,17 @@ public class GameObject implements Lookable {
 
     public String takeItem(Item target) {
         this.transferItem(this.getLocation().getContains(), target);
-        StringBuffer sb = new StringBuffer("Got ").append(target.getNameWithAdjectives());
-        System.out.println(this.getVisibleItems());
+        StringBuffer sb = new StringBuffer("Got ").append(target.getNameWithAdjs());
         return sb.toString();
+    }
+
+    public String dropItem(Item target) {
+        this.getLocation().transferItem(this.getContains(), target);
+        StringBuffer sb = new StringBuffer("Dropped ").append(target.getNameWithAdjs());
+        return sb.toString();
+    }
+
+    public String examineItem(Item target) {
+        return target.getDescription();
     }
 }
