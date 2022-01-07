@@ -2,7 +2,7 @@ package gameobjs;
 
 import utils.Direction;
 
-public abstract class Actor extends GameObject implements Mobile {
+public abstract class Actor extends Entity implements Mobile {
 
     public Actor(String name, String adjectives, Area location, String description) {
         super(name, adjectives, description);

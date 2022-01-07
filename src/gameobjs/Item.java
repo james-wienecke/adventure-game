@@ -2,7 +2,7 @@ package gameobjs;
 
 import java.util.ArrayList;
 
-public class Item extends GameObject implements Acquirable {
+public class Item extends Entity implements Acquirable {
     private boolean isContainer = false;
     private boolean isKnown = false;
 
