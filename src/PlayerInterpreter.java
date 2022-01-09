@@ -4,12 +4,14 @@ import gameobjs.Player;
 import textutils.Sentence;
 import textutils.TextParser;
 
+import java.util.Arrays;
+
 public class PlayerInterpreter {
 
     public static void interpret(String input, Entity player) {
         TextParser.addSentence(input);
-        Sentence lastSent = TextParser.getSentence();
         try {
+            Sentence lastSent = TextParser.getSentence();
             switch (lastSent.getVerb().getType()) {
                 case NO_OBJ:
                     switch (lastSent.getVerb()) {
@@ -48,8 +50,7 @@ public class PlayerInterpreter {
                     break;
             }
         } catch (NullPointerException e) {
-            String failure = lastSent.getFirstNoun().getWord();
-            System.out.println("Don't know what a " + failure + " is");
+            System.out.println("You WHAT, mate?");
         }
     }
 }
