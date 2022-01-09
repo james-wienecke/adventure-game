@@ -31,6 +31,16 @@ public class Sentence {
         return this.words;
     }
 
+    public TextToken getFirstNoun() {
+        TextToken noun = null;
+        for (TextToken token : this.tokens) {
+            if (token.getType() == TextTokenType.NOUN)
+                noun = token;
+        }
+        if (noun != null) return noun;
+        else return new TextToken("unknown");
+    }
+
     public Intention getIntention() {
         return intention;
     }
