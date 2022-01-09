@@ -5,8 +5,7 @@ import utils.Direction;
 import java.util.ArrayList;
 
 interface Acquirable {
-    void transferItem(ArrayList<Item> formerContainer, Item item);
-//    void takeItem()
+    void transferItem(ArrayList<Entity> formerContainer, Entity item);
 }
 
 interface Mobile {

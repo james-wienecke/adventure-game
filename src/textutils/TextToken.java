@@ -74,6 +74,8 @@ public class TextToken {
             case "touch":
             case "press":
             case "push":
+            case "drop":
+            case "leave":
                 this.type = TextTokenType.VERB;
                 break;
             case "red":

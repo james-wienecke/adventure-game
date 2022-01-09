@@ -1,5 +1,6 @@
 package textutils.intention;
 
+import gameobjs.Entity;
 import gameobjs.GameObject;
 import gameobjs.Item;
 import textutils.TextToken;
@@ -78,7 +79,7 @@ public class Intention {
 
     public static void main(String[] args) {
         // player searches this testObject's contents to do something with an item inside
-        GameObject testObj = new GameObject("test", "","a test container");
+        Entity testObj = new Item("test", "","a test container");
         // these three keys are the contents of testObject
         testObj.addToContainer(new Item("key", "big silver", "the wrong house key"));
         testObj.addToContainer(new Item("key", "small gold", "the right house key"));

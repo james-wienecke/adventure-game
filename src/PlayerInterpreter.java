@@ -1,46 +1,56 @@
-import gameobjs.Area;
+import gameobjs.Entity;
 import gameobjs.Item;
 import gameobjs.Player;
 import textutils.Sentence;
 import textutils.TextParser;
-import textutils.intention.*;
+
+import java.util.Arrays;
 
 public class PlayerInterpreter {
 
-    public static void interpret(String input, Player player) {
+    public static void interpret(String input, Entity player) {
         TextParser.addSentence(input);
-        Sentence lastSentence = TextParser.getSentence();
-        switch (lastSentence.getVerb().getType()) {
-            case NO_OBJ:
-                switch (lastSentence.getVerb()) {
-                    case VERB_LOOK:
-                        System.out.println(player.getLocation().lookAround());
-                        break;
-                }
-                break;
-            case ONE_OBJ:
-                switch (lastSentence.getVerb()) {
-                    case VERB_GO:
+        try {
+            Sentence lastSent = TextParser.getSentence();
+            switch (lastSent.getVerb().getType()) {
+                case NO_OBJ:
+                    switch (lastSent.getVerb()) {
+                        case VERB_LOOK:
+                            System.out.println(player.getLocation().lookAround());
+                            break;
+                    }
+                    break;
+                case ONE_OBJ:
+                    switch (lastSent.getVerb()) {
+                        case VERB_GO:
 
-                        break;
-                    case VERB_GET:
-                        Area context = player.getLocation();
-                        lastSentence.getIntention().getDirectObject().findTarget(context.getContains());
-                        Item target = lastSentence.getIntention().getDirectObject().getTarget();
-                        System.out.println(player.takeItem(target));
-                        break;
-                }
+                            break;
+                        case VERB_GET:
+                            Entity targetGet = lastSent.getIntentionTarget(player.getLocation());
+                            System.out.println(player.takeItem(targetGet));
+                            break;
+                        case VERB_DROP:
+                            Entity targetDrop = lastSent.getIntentionTarget(player);
+                            System.out.println(player.dropItem(targetDrop));
+                            break;
+                        case VERB_EXAMINE:
+                            Entity targetExamine = lastSent.getIntentionTarget(player);
+                            System.out.println(player.examineItem(targetExamine));
+                    }
 
-                break;
-            case TWO_OBJ:
-                System.out.println("Unimplemented");
-                break;
-            case SYSTEM:
+                    break;
+                case TWO_OBJ:
+                    System.out.println("Unimplemented");
+                    break;
+                case SYSTEM:
 
-                break;
-            case UNKNOWN:
+                    break;
+                case UNKNOWN:
 
-                break;
+                    break;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("You WHAT, mate?");
         }
     }
 }

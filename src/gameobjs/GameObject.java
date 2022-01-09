@@ -6,7 +6,7 @@ public class GameObject implements Lookable {
     private String name;
     private String[] adjectives;
     private String description;
-    private ArrayList<Item> contains;
+    private ArrayList<Entity> contains;
     private Area location;
     private boolean isKnown;
 
@@ -41,12 +41,12 @@ public class GameObject implements Lookable {
         this.description = description;
     }
 
-    public void addToContainer(Item item) {
-        this.contains.add(item);
+    public void addToContainer(Entity obj) {
+        this.contains.add(obj);
     }
 
-    public void addToContainer(ArrayList<Item> item) {
-        this.contains.addAll(item);
+    public void addToContainer(ArrayList<Entity> obj) {
+        this.contains.addAll(obj);
     }
 
     public void setLocation(Area area) {
@@ -57,7 +57,7 @@ public class GameObject implements Lookable {
         return this.location;
     }
 
-    public ArrayList<Item> getContains() { return this.contains; }
+    public ArrayList<Entity> getContains() { return this.contains; }
 
     public String getVisibleItems() {
         StringBuilder output = new StringBuilder();
@@ -81,24 +81,24 @@ public class GameObject implements Lookable {
     }
 
     public void makeContainedItemsVisible() {
-        for (Item item : this.contains) {
+        for (Entity item : this.contains) {
             if (!item.isKnown()) item.setKnown(true);
         }
     }
 
     public boolean hasItem(String itemName) {
-        for (Item item : this.contains) {
+        for (Entity item : this.contains) {
             if (item.getName().equals(itemName))
                 return true;
         }
         return false;
     }
 
-    public boolean hasItem(Item itemLookup) {
+    public boolean hasItem(Entity itemLookup) {
         return this.contains.contains(itemLookup);
     }
 
-    public Item lookupItemFromContains(String itemName) {
+    public Entity lookupItemFromContains(String itemName) {
         int tgtIndex = -1;
         for (int i = 0; i < this.contains.size(); i++) {
             if (this.contains.get(i).getName().equals(itemName)) {
@@ -110,12 +110,12 @@ public class GameObject implements Lookable {
         return this.contains.get(tgtIndex);
     }
 
-    public void transferItem(ArrayList<Item> formerContainer, Item item) {
+    public void transferItem(ArrayList<Entity> formerContainer, Entity item) {
             this.contains.add(item);
             formerContainer.remove(item);
     }
 
-    public String getNameWithAdjectives() {
+    public String getNameWithAdjs() {
         StringBuffer sb = new StringBuffer();
         for (String adj : this.adjectives) {
             sb.append(adj).append(' ');
@@ -123,17 +123,37 @@ public class GameObject implements Lookable {
         return sb.append(this.name).toString();
     }
 
+    public boolean isNowAContainer() {
+        return this.contains.size() > 0;
+    }
+
     public String lookAround() {
         StringBuffer sb = new StringBuffer("You see ").append(this.description);
         sb.append("\nInside this, you see: ");
         if (this.contains.size() > 0) {
-            for (Item item : this.contains) {
-                sb.append('\n').append(item.getNameWithAdjectives());
+            for (Entity obj : this.contains) {
+                sb.append('\n').append(obj.getNameWithAdjs());
             }
         } else {
             sb.append("nothing\n");
         }
 
         return sb.toString();
+    }
+
+    public String takeItem(Entity target) {
+        this.transferItem(this.getLocation().getContains(), target);
+        StringBuffer sb = new StringBuffer("Got ").append(target.getNameWithAdjs());
+        return sb.toString();
+    }
+
+    public String dropItem(Entity target) {
+        this.getLocation().transferItem(this.getContains(), target);
+        StringBuffer sb = new StringBuffer("Dropped ").append(target.getNameWithAdjs());
+        return sb.toString();
+    }
+
+    public String examineItem(Entity target) {
+        return target.getDescription();
     }
 }

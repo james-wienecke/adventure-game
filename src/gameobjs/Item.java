@@ -2,7 +2,7 @@ package gameobjs;
 
 import java.util.ArrayList;
 
-public class Item extends GameObject implements Acquirable {
+public class Item extends Entity implements Acquirable {
     private boolean isContainer = false;
     private boolean isKnown = false;
 
@@ -16,13 +16,13 @@ public class Item extends GameObject implements Acquirable {
     }
 
     @Override
-    public void addToContainer(Item item) {
+    public void addToContainer(Entity item) {
         if (isContainer)
             super.addToContainer(item);
     }
 
     @Override
-    public void addToContainer(ArrayList<Item> item) {
+    public void addToContainer(ArrayList<Entity> item) {
         if (isContainer)
             super.addToContainer(item);
     }
